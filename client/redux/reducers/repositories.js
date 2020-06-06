@@ -5,9 +5,9 @@ const SET_REPOSITORIES = 'SET_REPOSITORIES'
 const GET_README = 'GET_README'
 
 const initialState = {
-  username: 'ovasylenko',
+  username: '',
   list: [],
-  file: ''
+  readme: ''
 }
 
 export default (state = initialState, action) => {
@@ -25,7 +25,7 @@ export default (state = initialState, action) => {
     case GET_README:
       return {
         ...state,
-        file: action.file
+        readme: action.readme
       }
     default:
       return state
@@ -44,14 +44,16 @@ export function setRepositories(username) {
   }
 }
 
-export function getReadme(username, reponame) {
-  const headers = { Accept: 'application/vnd.github.VERSION.html' }
+export function getReadme(username, repositoryname) {
+  const headers = { Accept: 'application/vnd.github.VERSION.raw' }
   return function (dispatch) {
-    axios(`https://api.github.com/repos/${username}/${reponame}/readme`, {
-      param: {},
-      headers
-    }).then(({ data }) => {
-      dispatch({ type: GET_README, file: data })
-    })
+    axios
+      .get(`https://api.github.com/repos/${username}/${repositoryname}/readme`, {
+        param: {},
+        headers
+      })
+      .then(({ data }) => {
+        dispatch({ type: GET_README, readme: data })
+      })
   }
 }

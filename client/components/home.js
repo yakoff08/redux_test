@@ -1,22 +1,28 @@
-import React, { useState } from 'react'
-import Head from './head'
-// import wave from '../assets/images/wave.jpg'
+// import React from 'react'
+// import { Route, Switch } from 'react-router-dom'
+// import Header from './header'
+// import Main from './main'
+// import Repositories from './repositories'
+// import Readme from './readme'
+// // import { useEffect } from 'react'
+// // import { setRepositories, getReadme } from '../redux/reducers/repositories'
 
-const Home = () => {
-  const [counter, setCounterNew] = useState(0)
+// const Home = () => {
+// // const {username, repository} = useParams()
+//   return (
+//     <div>
+//       <Header />
+//       <div>
+//         <Switch>
+//           <Route exact path="/" component={() => <Main />} />
+//           <Route exact path="/:username" component={() => <Repositories />} />
+//           <Route exact path="/:username/:repository" component={() => <Readme />} />
+//         </Switch>
+//       </div>
+//     </div>
+//   )
+// }
 
-  return (
-    <div>
-      <Head title="Hello" />
-      <img alt="wave" src="images/wave.jpg" />
-      <button type="button" onClick={() => setCounterNew(counter + 1)}>
-        updateCounter
-      </button>
-      <div> Hello World Dashboard {counter} </div>
-    </div>
-  )
-}
+// Home.propTypes = {}
 
-Home.propTypes = {}
-
-export default Home
+// export default Home

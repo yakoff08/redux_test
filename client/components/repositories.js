@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
-import { updateUsername, setRepositories } from '../redux/reducers/repositories'
+import { setRepositories } from '../redux/reducers/repositories'
 import Header from './header'
 
 const Repositories = () => {
@@ -12,9 +12,11 @@ const Repositories = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(updateUsername(userNameParams))
     dispatch(setRepositories(userNameParams))
-  }, [userNameParams])
+    if (typeof username !== 'undefined') {
+      dispatch(setRepositories(userNameParams))
+    }
+  }, [dispatch, userNameParams, username])
 
   return (
     <div>

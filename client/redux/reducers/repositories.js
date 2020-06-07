@@ -5,7 +5,7 @@ const SET_REPOSITORIES = 'SET_REPOSITORIES'
 const GET_README = 'GET_README'
 
 const initialState = {
-  username: '',
+  username: 'yakoff08',
   list: [],
   readme: ''
 }
@@ -37,16 +37,19 @@ export function updateUsername(username) {
 }
 
 export function setRepositories(username) {
-  return function (dispatch) {
+  return function set(dispatch) {
     axios(`https://api.github.com/users/${username}/repos`).then(({ data }) => {
-      dispatch({ type: SET_REPOSITORIES, list: data })
+      dispatch({
+        type: SET_REPOSITORIES,
+        list: data
+      })
     })
   }
 }
 
 export function getReadme(username, repositoryname) {
   const headers = { Accept: 'application/vnd.github.VERSION.raw' }
-  return function (dispatch) {
+  return function set(dispatch) {
     axios
       .get(`https://api.github.com/repos/${username}/${repositoryname}/readme`, {
         param: {},

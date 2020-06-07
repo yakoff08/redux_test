@@ -8,12 +8,15 @@ import Header from './header'
 
 const Repo = () => {
   const reponame = useSelector((store) => store.repositories.readme)
-  const { usename: userNameParams, repositoryname: repoNameParams } = useParams()
+  const { username: userNameParams, repositoryname: repoNameParams } = useParams()
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getReadme(userNameParams, repoNameParams))
-  }, [reponame])
+    if (typeof username !== 'undefined' && typeof repository !== 'undefined') {
+      dispatch(getReadme(userNameParams, repoNameParams))
+    }
+  }, [dispatch, userNameParams, repoNameParams])
 
   return (
     <div>
